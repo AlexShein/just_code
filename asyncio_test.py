@@ -8,7 +8,7 @@ log = logging.getLogger('perfomance_test')
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 URLS = [
-    'http://windguru.cz',
+    'http://weather.com',
     'http://google.com',
     'http://yandex.ru',
     'http://wikipedia.org',
@@ -28,7 +28,8 @@ def sync():
         urllib.request.urlopen(url)
         for url in URLS
     ]):
-        log.info(f'{i}, {result.url}, {result.read().decode("utf-8").count("<")}')
+        pass
+        # log.info(f'{i}, {result.url}, {result.read().decode("utf-8").count("<")}')
     log.info(f'###Sync execution took {time.time()-start:.2f}')
 
 
@@ -37,7 +38,8 @@ def sync_threading():
     with Pool() as pool:
         results = pool.map(lambda url: urllib.request.urlopen(url), URLS)
     for i, result in enumerate(results):
-        log.info(f'{i}, {result.url}, {result.read().decode("utf-8").count("<")}')
+        pass
+        # log.info(f'{i}, {result.url}, {result.read().decode("utf-8").count("<")}')
     log.info(f'###Sync execution with threading took {time.time()-start:.2f}')
 
 
@@ -54,7 +56,7 @@ async def main():
     ]
     for i, future in enumerate(asyncio.as_completed(futures)):
         result = await future
-        log.info(f'{i}, {result.url}, {result.read().decode("utf-8").count("<")}')
+        # log.info(f'{i}, {result.url}, {result.read().decode("utf-8").count("<")}')
     log.info(f'###Async execution took {time.time()-start:.2f}')
 
 sync()
@@ -63,3 +65,9 @@ sync_threading()
 ioloop = asyncio.get_event_loop()
 ioloop.run_until_complete(main())
 ioloop.close()
+
+# Gives output like
+# 2018-07-20 10:33:54,303 - perfomance_test - INFO - ###Sync execution took 9.75
+# 2018-07-20 10:33:56,267 - perfomance_test - INFO - ###Sync execution with threading took 1.96
+# 2018-07-20 10:33:56,291 - asyncio - DEBUG - Using selector: KqueueSelector
+# 2018-07-20 10:33:57,695 - perfomance_test - INFO - ###Async execution took 1.40
