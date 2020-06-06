@@ -1,1 +1,1 @@
-# Just another repository for small tasks and projects
+# Just a repository for small tasks and projects
