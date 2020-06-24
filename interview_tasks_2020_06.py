@@ -1,15 +1,15 @@
-# Alexander Sehin 04.06.20
+# Alexander Shein 04.06.20
 from typing import Dict, List
 
 
-def t1(input: str) -> Dict[int, str]:
+def t1(data_in: str) -> Dict[int, str]:
     '''
     1) Пронумеруй все элементы строки.
     '''
     return {1: 'a'}
 
 
-def t2(input: List[Dict]) -> List[int]:
+def t2(data_in: List[Dict]) -> List[int]:
     '''
     2) Есть список словарей вида:
     [
@@ -24,7 +24,7 @@ def t2(input: List[Dict]) -> List[int]:
     return [0]
 
 
-def t3(input: List[Dict]) -> List[Dict]:
+def t3(data_in: List[Dict]) -> List[Dict]:
     '''
     3) Входные данные как в задачке 2.
     Поменяй статус на 'in_progress', у которых статус 'error'.
@@ -72,31 +72,31 @@ def t5_stats_view(min_res: int) -> Dict:
 if __name__ == '__main__':
 
     # 1
-    t1_input = 'abcdef'
-    task_1_res = t1(t1_input)
+    t1_data_in = 'abcdef'
+    task_1_res = t1(t1_data_in)
     print(f'Task 1: {task_1_res}')
 
     # 2
-    t2_input = [
+    t2_data_in = [
         {'id': 161, 'status': 'done',},
         {'id': 162, 'status': 'error',},
         {'id': 163, 'status': 'done',},
         {'id': 164, 'status': 'error',},
         {'id': 165, 'status': 'done',},
     ]
-    task_2_res = t2(t2_input)
+    task_2_res = t2(t2_data_in)
     print(f'Task 2: {task_2_res}')
 
     # 3
-    t3_input = [
+    t3_data_in = [
         {'id': 161, 'status': 'done',},
         {'id': 162, 'status': 'error',},
         {'id': 163, 'status': 'done',},
         {'id': 164, 'status': 'error',},
         {'id': 165, 'status': 'done',},
     ]
-    task_3_res = t3(t3_input)
-    print(f'Task 3: {task_3_res}')
+    task_3_res = t3(t3_data_in)
+    print(f'Task 3: {t3_data_in}')
 
     # 4
     calculations(4)
